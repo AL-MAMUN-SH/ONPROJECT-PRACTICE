@@ -1,10 +1,15 @@
 const fs = require('fs')
 const http = require('http')
 const url = require('url')
+
+const slugify = require('slugify')
+
 // Etah holo CUSTOM MODULE EXPORT
+
 const x =require('./modules/readModule')
 
 // DATA READ ANOTHER 
+
 
 // READ FILE
 
@@ -15,6 +20,11 @@ const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8')
 const dataObj = JSON.parse(data)
 
 // SERVER 
+
+const slug = dataObj.map(el => slugify(el.productName,{lower:true})) 
+console.log(slug);
+
+// console.log(slugify('Fresh Avocado',{lower:true}));
 
 const server = http.createServer((req,res)=>{
 
