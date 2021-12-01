@@ -1,11 +1,13 @@
 const fs = require('fs')
 const http = require('http')
 const url = require('url')
+// Etah holo CUSTOM MODULE EXPORT
 const x =require('./modules/readModule')
 
 // DATA READ ANOTHER 
 
 // READ FILE
+
 const templateOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`,'utf-8')
 const templateProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`,'utf-8')
 const templateCard = fs.readFileSync(`${__dirname}/templates/template-card.html`,'utf-8')
@@ -15,17 +17,21 @@ const dataObj = JSON.parse(data)
 // SERVER 
 
 const server = http.createServer((req,res)=>{
+
     // console.log(req.url);
     // console.log(url.parse(req.url,true));
     const {query,pathname} = url.parse(req.url,true);
+
     // console.log(req.url)
     // const pathName = req.url
     // OVERVIEW PAGE
+
     if(pathname === '/' || pathname === '/overview'){
         res.writeHead(200,{'Content-type':'text/html'})
         const cardHtml = dataObj.map(el => x(templateCard,el)).join('')
         const output = templateOverview.replace('{%PRODUCT_CARDS%}',cardHtml)
         res.end(output)
+
         // PRODUCT PAGE
     }else if(pathname === '/product'){
         // console.log(query); // CHECK KORAH QUERY GULAH ASCHE KINAH
