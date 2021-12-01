@@ -55,5 +55,5 @@ const server = http.createServer((req,res)=>{
     }
 })
 server.listen(5000,'127.0.10.2',()=>{
-    console.log("HELLOW SERVER");
+    console.log("HELLOW I AM JAVASCRIPT SERVER");
 })
